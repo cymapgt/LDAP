@@ -14,8 +14,8 @@
   ],
   "require": {
     "php": ">=7.0",
-    "cymapgt/asn1": "^0.1.0",
-    "cymapgt/socket": "^0.1.0"
+    "cymapgt/asn1": "^0.2.1",
+    "cymapgt/socket": "^0.2.1"
   },
   "require-dev": {
     "symfony/console": "^3.2",
