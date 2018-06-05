@@ -126,7 +126,7 @@ class Operations
      * @param null|string $value
      * @return ExtendedRequest
      */
-    public static function extended(string $name, ?string $value = null)
+    public static function extended(string $name, string $value = null)
     {
         return new ExtendedRequest($name, $value);
     }

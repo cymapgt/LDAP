@@ -142,7 +142,7 @@ class Filters
      * @param string[] ...$contains
      * @return SubstringFilter
      */
-    public static function substring(string $attribute, ?string $startsWith, ?string $endsWith, string ...$contains) : SubstringFilter
+    public static function substring(string $attribute, string $startsWith, string $endsWith, string ...$contains) : SubstringFilter
     {
         return new SubstringFilter($attribute, $startsWith, $endsWith, ...$contains);
     }
@@ -192,7 +192,7 @@ class Filters
      * @param bool $matchDn
      * @return MatchingRuleFilter
      */
-    public static function extensible(?string $attribute, string $value, ?string $rule, bool $matchDn = false) : MatchingRuleFilter
+    public static function extensible(string $attribute = null, string $value = null, string $rule = null, bool $matchDn = false) : MatchingRuleFilter
     {
         return new MatchingRuleFilter($rule, $attribute, $value, $matchDn);
     }

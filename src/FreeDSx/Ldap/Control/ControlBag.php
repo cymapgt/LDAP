@@ -58,7 +58,7 @@ class ControlBag implements \IteratorAggregate, \Countable
      * @param string $oid
      * @return null|Control
      */
-    public function get(string $oid) : ?Control
+    public function get(string $oid)
     {
         foreach ($this->controls as $control) {
             if ($oid === $control->getTypeOid()) {

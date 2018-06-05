@@ -100,7 +100,7 @@ class VlvSpec extends ObjectBehavior
         ));
 
         $this->getEntries();
-        $this->position()->shouldBeEqualTo(250);
+        $this->position()->shouldBeEqualTo( 250);
     }
 
     function it_should_return_the_size_of_the_list_returned_from_the_server($client)
@@ -124,7 +124,7 @@ class VlvSpec extends ObjectBehavior
         ));
 
         $this->getEntries();
-        $this->listOffset()->shouldBeEqualTo(10);
+        $this->listOffset()->shouldBeEqualTo( 10);
     }
 
     function it_should_check_if_we_are_at_the_start_of_the_list($client)
@@ -176,7 +176,7 @@ class VlvSpec extends ObjectBehavior
 
         $this->asPercentage(true);
         $this->getEntries();
-        $this->position()->shouldBeEqualTo(75);
+        $this->position()->shouldBeLike(75);
     }
 
     function it_should_move_forward_as_a_percentage_if_specified($client)
@@ -195,11 +195,11 @@ class VlvSpec extends ObjectBehavior
 
         $this->asPercentage(true);
         $this->getEntries();
-        $this->position()->shouldBeEqualTo(1);
+        $this->position()->shouldBeLike(1);
         $this->moveForward(9);
         $this->getEntries();
-        $this->position()->shouldBeEqualTo(10);
-        $this->listOffset()->shouldBeEqualTo(20);
+        $this->position()->shouldBeLike(10);
+        $this->listOffset()->shouldBeLike(20);
     }
 
     function it_should_move_backward_as_a_percentage_if_specified($client)
@@ -219,10 +219,10 @@ class VlvSpec extends ObjectBehavior
         $this->asPercentage(true);
         $this->startAt(50);
         $this->getEntries();
-        $this->position()->shouldBeEqualTo(50);
+        $this->position()->shouldBeLike(50);
         $this->moveBackward(10);
         $this->getEntries();
-        $this->position()->shouldBeEqualTo(40);
-        $this->listOffset()->shouldBeEqualTo(80);
+        $this->position()->shouldBeLike( 40);
+        $this->listOffset()->shouldBeLike( 80);
     }
 }

@@ -37,7 +37,7 @@ class SubstringFilter implements FilterInterface
 {
     use FilterAttributeTrait;
 
-    protected const CHOICE_TAG = 4;
+    const CHOICE_TAG = 4;
 
     /**
      * @var null|string
@@ -60,7 +60,7 @@ class SubstringFilter implements FilterInterface
      * @param null|string $endsWith
      * @param string[] ...$contains
      */
-    public function __construct(string $attribute, ?string $startsWith = null, ?string $endsWith = null, string ...$contains)
+    public function __construct(string $attribute, string $startsWith = null, string $endsWith = null, string ...$contains)
     {
         $this->attribute = $attribute;
         $this->startsWith = $startsWith;
@@ -73,7 +73,7 @@ class SubstringFilter implements FilterInterface
      *
      * @return null|string
      */
-    public function getStartsWith() : ?string
+    public function getStartsWith()
     {
         return $this->startsWith;
     }
@@ -84,7 +84,7 @@ class SubstringFilter implements FilterInterface
      * @param null|string $value
      * @return $this
      */
-    public function setStartsWith(?string $value)
+    public function setStartsWith(string $value = null)
     {
         $this->startsWith = $value;
 
@@ -96,7 +96,7 @@ class SubstringFilter implements FilterInterface
      *
      * @return null|string
      */
-    public function getEndsWith() : ?string
+    public function getEndsWith()
     {
         return $this->endsWith;
     }
@@ -107,7 +107,7 @@ class SubstringFilter implements FilterInterface
      * @param null|string $value
      * @return $this
      */
-    public function setEndsWith(?string $value)
+    public function setEndsWith(string $value = null)
     {
         $this->endsWith = $value;
 
@@ -207,7 +207,8 @@ class SubstringFilter implements FilterInterface
         if (!($attrType instanceof OctetStringType && $substrings instanceof SequenceType && count($substrings) > 0)) {
             throw new ProtocolException('The substring filter is malformed.');
         }
-        [$startsWith, $endsWith, $contains] = self::parseSubstrings($substrings);
+        list($startsWith, $endsWith, $contains) = self::parseSubstrings($substrings);
+        //[$startsWith, $endsWith, $contains] = self::parseSubstrings($substrings); This will not work with PHP <= 7.0
 
         return new self($attrType->getValue(), $startsWith, $endsWith, ...$contains);
     }

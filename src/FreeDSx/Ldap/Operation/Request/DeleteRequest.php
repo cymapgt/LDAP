@@ -25,7 +25,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class DeleteRequest implements RequestInterface, DnRequestInterface
 {
-    protected const APP_TAG = 10;
+    const APP_TAG = 10;
 
     /**
      * @var Dn
@@ -81,7 +81,7 @@ class DeleteRequest implements RequestInterface, DnRequestInterface
      * @param AbstractType $type
      * @throws ProtocolException
      */
-    protected static function validate(AbstractType $type) : void
+    protected static function validate(AbstractType $type)
     {
         if (!$type instanceof OctetStringType || $type->getTagClass() !== AbstractType::TAG_CLASS_APPLICATION) {
             throw new ProtocolException('The delete request must be an octet string with an application tag class.');

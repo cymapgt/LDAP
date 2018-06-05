@@ -51,7 +51,7 @@ class FilterFactory
      * @param AbstractType $type
      * @return FilterInterface|null
      */
-    public static function get(AbstractType $type) : ?FilterInterface
+    public static function get(AbstractType $type)
     {
         $filterClass = self::$map[$type->getTagNumber()] ?? null;
 
@@ -71,7 +71,7 @@ class FilterFactory
      * @param int $filterType
      * @param string $filterClass
      */
-    public static function set(int $filterType, string $filterClass) : void
+    public static function set(int $filterType, string $filterClass)
     {
         if (!class_exists($filterClass)) {
             throw new InvalidArgumentException(sprintf('The filter class does not exist: %s', $filterClass));

@@ -19,7 +19,7 @@ class ApproximateFilter implements FilterInterface
 {
     use AttributeValueAssertionTrait;
 
-    protected const CHOICE_TAG = 8;
+    const CHOICE_TAG = 8;
 
-    protected const FILTER_TYPE = self::FILTER_APPROX;
+    const FILTER_TYPE = self::FILTER_APPROX;
 }

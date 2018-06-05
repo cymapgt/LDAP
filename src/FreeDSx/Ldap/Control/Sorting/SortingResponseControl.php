@@ -61,7 +61,7 @@ class SortingResponseControl extends Control
      * @param int $result
      * @param null|string $attribute
      */
-    public function __construct(int $result, ?string $attribute = null)
+    public function __construct(int $result, string $attribute = null)
     {
         $this->result = $result;
         $this->attribute = $attribute;
@@ -79,7 +79,7 @@ class SortingResponseControl extends Control
     /**
      * @return null|string
      */
-    public function getAttribute() : ?string
+    public function getAttribute()
     {
         return $this->attribute;
     }

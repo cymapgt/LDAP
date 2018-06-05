@@ -52,7 +52,7 @@ class Dn implements \IteratorAggregate, \Countable
     /**
      * @return null|Dn
      */
-    public function getParent() : ?Dn
+    public function getParent()
     {
         if ($this->pieces === null) {
             $this->parse();
@@ -116,7 +116,7 @@ class Dn implements \IteratorAggregate, \Countable
     /**
      * @todo This needs proper handling. But the regex would probably be rather crazy.
      */
-    protected function parse() : void
+    protected function parse()
     {
         $pieces = preg_split('/(?<!\\\\),/', $this->dn);
         $pieces = $pieces === false ? [] : $pieces;

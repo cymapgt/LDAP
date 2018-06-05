@@ -57,7 +57,7 @@ class VlvResponseControl extends Control
      * @param int $result
      * @param null|string $contextId
      */
-    public function __construct(int $offset, int $count, int $result, ?string $contextId = null)
+    public function __construct(int $offset, int $count, int $result, string $contextId = null)
     {
         $this->offset = $offset;
         $this->count = $count;

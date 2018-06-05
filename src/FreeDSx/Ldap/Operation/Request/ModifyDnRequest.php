@@ -32,7 +32,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class ModifyDnRequest implements RequestInterface, DnRequestInterface
 {
-    protected const APP_TAG = 12;
+    const APP_TAG = 12;
 
     /**
      * @var Dn
@@ -128,7 +128,7 @@ class ModifyDnRequest implements RequestInterface, DnRequestInterface
     /**
      * @return null|Dn
      */
-    public function getNewParentDn() : ?Dn
+    public function getNewParentDn()
     {
         return $this->newParentDn;
     }

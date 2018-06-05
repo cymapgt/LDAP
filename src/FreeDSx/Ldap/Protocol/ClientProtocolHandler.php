@@ -52,14 +52,14 @@ class ClientProtocolHandler
     /**
      * RFC 4511, A.1. These are considered result codes that do not indicate an error condition.
      */
-    protected const NON_ERROR_CODES = [
+    const NON_ERROR_CODES = [
         ResultCode::SUCCESS,
         ResultCode::COMPARE_FALSE,
         ResultCode::COMPARE_TRUE,
         ResultCode::REFERRAL,
         ResultCode::SASL_BIND_IN_PROGRESS,
     ];
-
+    
     /**
      * @var SocketPool
      */
@@ -125,7 +125,7 @@ class ClientProtocolHandler
     /**
      * @return null|Socket
      */
-    public function getSocket() : ?Socket
+    public function getSocket()
     {
         return $this->tcp;
     }
@@ -137,7 +137,7 @@ class ClientProtocolHandler
      * @throws ConnectionException
      * @throws UnsolicitedNotificationException
      */
-    public function send(RequestInterface $request, Control ...$controls) : ?LdapMessageResponse
+    public function send(RequestInterface $request, Control ...$controls)
     {
         $messageTo = new LdapMessageRequest(
             ++$this->messageId,
@@ -191,7 +191,7 @@ class ClientProtocolHandler
      * @throws BindException
      * @throws OperationException
      */
-    protected function handleResponse(LdapMessageRequest $messageTo, LdapMessageResponse $messageFrom) : void
+    protected function handleResponse(LdapMessageRequest $messageTo, LdapMessageResponse $messageFrom)
     {
         if ($messageFrom->getResponse() instanceof ExtendedResponse) {
             $this->handleExtendedResponse($messageTo, $messageFrom);
@@ -225,7 +225,7 @@ class ClientProtocolHandler
      * @return null|LdapMessageResponse
      * @throws UnsolicitedNotificationException
      */
-    protected function handleRequest(LdapMessageRequest $messageTo) : ?LdapMessageResponse
+    protected function handleRequest(LdapMessageRequest $messageTo)
     {
         $request = $messageTo->getRequest();
         if ($request instanceof SearchRequest && $request->getBaseDn() === null) {
@@ -254,7 +254,7 @@ class ClientProtocolHandler
      * @return LdapMessageResponse|null
      * @throws OperationException
      */
-    protected function handleReferral(LdapMessageRequest $messageTo, LdapMessageResponse $messageFrom) : ?LdapMessageResponse
+    protected function handleReferral(LdapMessageRequest $messageTo, LdapMessageResponse $messageFrom)
     {
         $referralChaser = $this->options['referral_chaser'];
         if (!($referralChaser === null || $referralChaser instanceof ReferralChaserInterface)) {
@@ -344,7 +344,7 @@ class ClientProtocolHandler
      * @param RequestInterface $request
      * @param LdapUrl $referral
      */
-    protected function mergeReferralOptions(RequestInterface $request, LdapUrl $referral) : void
+    protected function mergeReferralOptions(RequestInterface $request, LdapUrl $referral)
     {
         if ($referral->getDn() !== null && $request instanceof SearchRequest) {
             $request->setBaseDn($referral->getDn());
@@ -371,7 +371,7 @@ class ClientProtocolHandler
      * @param LdapMessageRequest $messageTo
      * @param LdapMessageResponse $messageFrom
      */
-    protected function handleExtendedResponse(LdapMessageRequest $messageTo, LdapMessageResponse $messageFrom) : void
+    protected function handleExtendedResponse(LdapMessageRequest $messageTo, LdapMessageResponse $messageFrom)
     {
         if (!$messageTo->getRequest() instanceof ExtendedRequest) {
             return;
@@ -394,7 +394,7 @@ class ClientProtocolHandler
      * @param LdapMessageRequest $messageTo
      * @throws ConnectionException
      */
-    protected function handleStartTls(LdapMessageRequest $messageTo) : void
+    protected function handleStartTls(LdapMessageRequest $messageTo)
     {
         $messageFrom = $this->getMessageWithId($messageTo->getMessageId());
 
@@ -477,7 +477,7 @@ class ClientProtocolHandler
     /**
      * Closes the TCP connection and resets the message ID back to 0.
      */
-    protected function closeTcp() : void
+    protected function closeTcp()
     {
         $this->tcp->close();
         $this->messageId = 0;

@@ -34,7 +34,7 @@ class ReferralContext
      * @param BindRequest|null $bindRequest
      * @param LdapUrl[] ...$referrals
      */
-    public function __construct(?BindRequest $bindRequest, LdapUrl ...$referrals)
+    public function __construct($bindRequest, LdapUrl ...$referrals)
     {
         $this->referrals = $referrals;
         $this->bindRequest = $bindRequest;
@@ -77,7 +77,7 @@ class ReferralContext
     /**
      * @return BindRequest|null
      */
-    public function getBindRequest() : ?BindRequest
+    public function getBindRequest()
     {
         return $this->bindRequest;
     }

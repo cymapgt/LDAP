@@ -99,7 +99,7 @@ class Controls
      * @param null|string $contextId
      * @return VlvControl
      */
-    public static function vlv(int $before, int $after, int $offset = 1, int $count = 0, ?string $contextId = null) : VlvControl
+    public static function vlv(int $before, int $after, int $offset = 1, int $count = 0, string $contextId = null) : VlvControl
     {
         return new VlvControl($before, $after, $offset, $count, null, $contextId);
     }
@@ -113,7 +113,7 @@ class Controls
      * @param null|string $contextId
      * @return VlvControl
      */
-    public static function vlvFilter(int $before, int $after, GreaterThanOrEqualFilter $filter, ?string $contextId = null) : VlvControl
+    public static function vlvFilter(int $before, int $after, GreaterThanOrEqualFilter $filter, string $contextId = null) : VlvControl
     {
         return new VlvControl($before, $after, null, null, $filter, $contextId);
     }

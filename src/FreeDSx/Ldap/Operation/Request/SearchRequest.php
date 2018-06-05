@@ -52,36 +52,36 @@ class SearchRequest implements RequestInterface
     /**
      * Searches a scope of a single object (IE. a specific DN)
      */
-    public const SCOPE_BASE_OBJECT = 0;
+    const SCOPE_BASE_OBJECT = 0;
 
     /**
      * Searches one level under a specific DN (ie. like a non-recursive directory listing).
      */
-    public const SCOPE_SINGLE_LEVEL = 1;
+    const SCOPE_SINGLE_LEVEL = 1;
 
     /**
      * Searches a complete subtree under a DN (ie. like a recursive directory listing).
      */
-    public const SCOPE_WHOLE_SUBTREE = 2;
+    const SCOPE_WHOLE_SUBTREE = 2;
 
     /**
      * Never dereference aliases.
      */
-    public const DEREF_NEVER = 0;
+    const DEREF_NEVER = 0;
 
-    public const DEREF_IN_SEARCHING = 1;
+    const DEREF_IN_SEARCHING = 1;
 
     /**
      * Dereference aliases when finding the base object only.
      */
-    public const DEREF_FINDING_BASE_OBJECT = 2;
+    const DEREF_FINDING_BASE_OBJECT = 2;
 
     /**
      * Always dereference aliases.
      */
-    public const DEREF_ALWAYS = 3;
+    const DEREF_ALWAYS = 3;
 
-    protected const APP_TAG = 3;
+    const APP_TAG = 3;
 
     /**
      * @var Dn|null
@@ -239,7 +239,7 @@ class SearchRequest implements RequestInterface
     /**
      * @return Dn|null
      */
-    public function getBaseDn() : ?Dn
+    public function getBaseDn()
     {
         return $this->baseDn;
     }

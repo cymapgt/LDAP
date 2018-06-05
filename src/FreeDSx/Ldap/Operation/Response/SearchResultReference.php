@@ -26,7 +26,7 @@ use FreeDSx\Ldap\LdapUrl;
  */
 class SearchResultReference implements ResponseInterface
 {
-    protected const TAG_NUMBER = 19;
+    const TAG_NUMBER = 19;
 
     /**
      * @var LdapUrl[]

@@ -19,33 +19,33 @@ use FreeDSx\Ldap\Protocol\ProtocolElementInterface;
  */
 interface FilterInterface extends ProtocolElementInterface
 {
-    public const PAREN_LEFT = '(';
+    const PAREN_LEFT = '(';
 
-    public const PAREN_RIGHT = ')';
+    const PAREN_RIGHT = ')';
 
-    public const OPERATOR_AND = '&';
+    const OPERATOR_AND = '&';
 
-    public const OPERATOR_OR = '|';
+    const OPERATOR_OR = '|';
 
-    public const OPERATOR_NOT = '!';
+    const OPERATOR_NOT = '!';
 
-    public const FILTER_EQUAL = '=';
+    const FILTER_EQUAL = '=';
 
-    public const FILTER_APPROX = '~=';
+    const FILTER_APPROX = '~=';
 
-    public const FILTER_GTE = '>=';
+    const FILTER_GTE = '>=';
 
-    public const FILTER_LTE = '<=';
+    const FILTER_LTE = '<=';
 
-    public const FILTER_EXT = ':=';
+    const FILTER_EXT = ':=';
 
-    public const OPERATORS = [
+    const OPERATORS = [
         self::OPERATOR_NOT,
         self::OPERATOR_OR,
         self::OPERATOR_AND,
     ];
 
-    public const FILTERS = [
+    const FILTERS = [
         self::FILTER_EQUAL,
         self::FILTER_APPROX,
         self::FILTER_GTE,

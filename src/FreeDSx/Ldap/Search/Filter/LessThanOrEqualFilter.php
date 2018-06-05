@@ -19,7 +19,7 @@ class LessThanOrEqualFilter implements FilterInterface
 {
     use AttributeValueAssertionTrait;
 
-    protected const CHOICE_TAG = 6;
+    const CHOICE_TAG = 6;
 
-    protected const FILTER_TYPE = self::FILTER_LTE;
+    const FILTER_TYPE = self::FILTER_LTE;
 }

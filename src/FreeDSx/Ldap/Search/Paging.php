@@ -68,7 +68,7 @@ class Paging
      * @param SearchRequest $search
      * @param int|null $size
      */
-    public function start(SearchRequest $search, ?int $size = null)
+    public function start(SearchRequest $search, int $size = null)
     {
         $this->size = $size ?? $this->size;
         $this->search = $search;
@@ -95,7 +95,7 @@ class Paging
      * @param int|null $size
      * @return Entries
      */
-    public function getEntries(?int $size = null) : Entries
+    public function getEntries(int $size = null) : Entries
     {
         return $this->send($size);
     }
@@ -118,7 +118,7 @@ class Paging
      *
      * @return int|null
      */
-    public function sizeEstimate() : ?int
+    public function sizeEstimate()
     {
         return $this->control ? $this->control->getSize() : null;
     }
@@ -128,7 +128,7 @@ class Paging
      * @return Entries
      * @throws ProtocolException
      */
-    protected function send(?int $size = null)
+    protected function send(int $size = null)
     {
         $cookie = $this->control ? $this->control->getCookie() : '';
         $message = $this->client->send($this->search, Controls::paging($size ?? $this->size, $cookie));

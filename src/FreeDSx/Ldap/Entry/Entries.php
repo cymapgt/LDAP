@@ -35,7 +35,7 @@ class Entries implements \Countable, \IteratorAggregate
      *
      * @return Entry|null
      */
-    public function first() : ?Entry
+    public function first()
     {
         $entry = reset($this->entries);
 
@@ -47,7 +47,7 @@ class Entries implements \Countable, \IteratorAggregate
      *
      * @return Entry|null
      */
-    public function last() : ?Entry
+    public function last()
     {
         $entry = end($this->entries);
         reset($this->entries);

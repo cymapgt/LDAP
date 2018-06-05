@@ -71,7 +71,7 @@ class ControlFactory
      * @param string $oid
      * @param $className
      */
-    public static function set(string $oid, $className) : void
+    public static function set(string $oid, $className)
     {
         if (!class_exists($className)) {
             throw new InvalidArgumentException(sprintf(

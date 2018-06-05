@@ -47,7 +47,7 @@ class PasswordModifyRequest extends ExtendedRequest
      * @param null|string $oldPassword
      * @param null|string $newPassword
      */
-    public function __construct(?string $userIdentity = null, ?string $oldPassword = null, ?string $newPassword = null)
+    public function __construct(string $userIdentity = null, string $oldPassword = null, string $newPassword = null)
     {
         $this->userIdentity = $userIdentity;
         $this->oldPassword = $oldPassword;
@@ -58,7 +58,7 @@ class PasswordModifyRequest extends ExtendedRequest
     /**
      * @return null|string
      */
-    public function getUsername() : ?string
+    public function getUsername()
     {
         return $this->userIdentity;
     }
@@ -67,7 +67,7 @@ class PasswordModifyRequest extends ExtendedRequest
      * @param null|string $username
      * @return $this
      */
-    public function setUsername(?string $username)
+    public function setUsername(string $username = null)
     {
         $this->userIdentity = $username;
 
@@ -77,7 +77,7 @@ class PasswordModifyRequest extends ExtendedRequest
     /**
      * @return null|string
      */
-    public function getNewPassword() : ?string
+    public function getNewPassword()
     {
         return $this->newPassword;
     }
@@ -86,7 +86,7 @@ class PasswordModifyRequest extends ExtendedRequest
      * @param null|string $newPassword
      * @return $this
      */
-    public function setNewPassword(?string $newPassword)
+    public function setNewPassword(string $newPassword = null)
     {
         $this->newPassword = $newPassword;
 
@@ -96,7 +96,7 @@ class PasswordModifyRequest extends ExtendedRequest
     /**
      * @return null|string
      */
-    public function getOldPassword() : ?string
+    public function getOldPassword()
     {
         return $this->oldPassword;
     }
@@ -105,7 +105,7 @@ class PasswordModifyRequest extends ExtendedRequest
      * @param null|string $oldPassword
      * @return $this
      */
-    public function setOldPassword(?string $oldPassword)
+    public function setOldPassword(string $oldPassword = null)
     {
         $this->oldPassword = $oldPassword;
 

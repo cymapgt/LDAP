@@ -26,7 +26,7 @@ class PresentFilter implements FilterInterface
 {
     use FilterAttributeTrait;
 
-    protected const APP_TAG = 7;
+    const APP_TAG = 7;
 
     /**
      * @param string $attribute

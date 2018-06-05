@@ -24,7 +24,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class AbandonRequest implements RequestInterface
 {
-    protected const APP_TAG = 16;
+    const APP_TAG = 16;
 
     /**
      * @var int

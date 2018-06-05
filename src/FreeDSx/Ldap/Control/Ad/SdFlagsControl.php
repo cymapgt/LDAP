@@ -29,22 +29,22 @@ class SdFlagsControl extends Control
     /**
      * Owner identifier of the object.
      */
-    public const OWNER_SECURITY_INFORMATION = 1;
+    const OWNER_SECURITY_INFORMATION = 1;
 
     /**
      * Primary group identifier.
      */
-    public const GROUP_SECURITY_INFORMATION = 2;
+    const GROUP_SECURITY_INFORMATION = 2;
 
     /**
      * Discretionary access control list (DACL) of the object.
      */
-    public const DACL_SECURITY_INFORMATION = 4;
+    const DACL_SECURITY_INFORMATION = 4;
 
     /**
      * System access control list (SACL) of the object.
      */
-    public const SACL_SECURITY_INFORMATION = 8;
+    const SACL_SECURITY_INFORMATION = 8;
 
     /**
      * @var int

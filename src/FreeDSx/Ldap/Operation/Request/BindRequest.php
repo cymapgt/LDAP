@@ -29,7 +29,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 abstract class BindRequest implements RequestInterface
 {
-    protected const APP_TAG = 0;
+    const APP_TAG = 0;
 
     /**
      * @var int
@@ -137,5 +137,5 @@ abstract class BindRequest implements RequestInterface
      * This is called as the request is transformed to ASN1 to be encoded. If the request parameters are not valid
      * then the method should throw an exception.
      */
-    abstract protected function validate() : void;
+    abstract protected function validate();
 }

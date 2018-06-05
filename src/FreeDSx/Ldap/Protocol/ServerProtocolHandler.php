@@ -124,12 +124,18 @@ class ServerProtocolHandler
             $this->dispatchRequests();
         // Per RFC 4511, 4.1.1 if the PDU cannot be parsed or is otherwise malformed a disconnect should be sent with a
         // result code of protocol error.
-        } catch (EncoderException|ProtocolException $e) {
+        } catch (EncoderException $e) {
+            $this->sendNoticeOfDisconnect('The message encoding is malformed.');            
+        } catch (ProtocolException $e) {
             $this->sendNoticeOfDisconnect('The message encoding is malformed.');
-        } catch (\Exception|\Throwable $e) {
+        } catch (\Exception $e) {
             if ($this->socket->isConnected()) {
                 $this->sendNoticeOfDisconnect();
             }
+        } catch (\Throwable $e) {
+            if ($this->socket->isConnected()) {
+                $this->sendNoticeOfDisconnect();
+            }            
         } finally {
             $this->socket->close();
         }
@@ -156,7 +162,7 @@ class ServerProtocolHandler
      *
      * Other requests are then dispatched to the specific request handler that has been defined.
      */
-    protected function dispatchRequests() : void
+    protected function dispatchRequests()
     {
         /** @var LdapMessageRequest $message */
         while ($message = $this->queue->getMessage()) {
@@ -203,7 +209,7 @@ class ServerProtocolHandler
      * @param LdapMessageRequest $message
      * @param Entries $entries
      */
-    protected function sendEntries(LdapMessageRequest $message, Entries $entries) : void
+    protected function sendEntries(LdapMessageRequest $message, Entries $entries)
     {
         $buffer = '';
 
@@ -268,7 +274,7 @@ class ServerProtocolHandler
     /**
      * @param string $message
      */
-    protected function sendNoticeOfDisconnect(string $message = '') : void
+    protected function sendNoticeOfDisconnect(string $message = '')
     {
         $this->sendMessage(new LdapMessageResponse(0, new ExtendedResponse(
             new LdapResult(ResultCode::PROTOCOL_ERROR, '', $message),
@@ -280,7 +286,7 @@ class ServerProtocolHandler
      * @param string $message
      * @param int $error
      */
-    protected function sendExtendedError(string $message, int $error) : void
+    protected function sendExtendedError(string $message, int $error)
     {
         $this->sendMessage(new LdapMessageResponse(0, new ExtendedResponse(new LdapResult($error, '', $message))));
     }
@@ -290,7 +296,7 @@ class ServerProtocolHandler
      * @param string $diagnostic
      * @param int $resultCode
      */
-    protected function sendOpError(LdapMessageRequest $message, string $diagnostic, int $resultCode) : void
+    protected function sendOpError(LdapMessageRequest $message, string $diagnostic, int $resultCode)
     {
         $result = ResponseFactory::get($message->getRequest(), $resultCode, $diagnostic);
 
@@ -304,7 +310,7 @@ class ServerProtocolHandler
     /**
      * @param LdapMessageResponse $response
      */
-    protected function sendMessage(LdapMessageResponse $response) : void
+    protected function sendMessage(LdapMessageResponse $response)
     {
         $this->socket->write($this->encoder->encode($response->toAsn1()));
     }
@@ -324,7 +330,9 @@ class ServerProtocolHandler
         $request = $message->getRequest();
         switch ($request) {
             case $request instanceof SimpleBindRequest:
-                [$resultCode, $diagnostic] = $this->handleBindRequest($request);
+                list($resultCode, $diagnostic) = $this->handleBindRequest($request);
+                //[$resultCode, $diagnostic] = $this->handleBindRequest($request); // Will not work with PHP <= 7.0
+                
                 break;
             case $request instanceof SearchRequest:
                 $entries = $this->handler->search($context, $request);
@@ -469,7 +477,7 @@ class ServerProtocolHandler
     /**
      * @param LdapMessageRequest $message
      */
-    protected function handleStartTls(LdapMessageRequest $message) : void
+    protected function handleStartTls(LdapMessageRequest $message)
     {
         # If we don't have a SSL cert or the OpenSSL extension is not available, then we can do nothing...
         if (!isset($this->options['ssl_cert']) || !extension_loaded('openssl')) {
@@ -522,7 +530,7 @@ class ServerProtocolHandler
      * The request handler should be constructed from a string class name. This is to make sure that each client instance
      * has its own version of the handler to avoid conflicts and potential security issues sharing a request handler.
      */
-    protected function validateAndSetRequestHandler() : void
+    protected function validateAndSetRequestHandler()
     {
         if (!isset($this->options['request_handler'])) {
             $this->handler = new GenericRequestHandler();
@@ -548,7 +556,12 @@ class ServerProtocolHandler
         }
         try {
             $this->handler = new $this->options['request_handler'];
-        } catch (\Exception|\Throwable $e) {
+        } catch (\Exception $e) {
+            throw new RuntimeException(sprintf(
+                'Unable to instantiate the request handler: "%s"',
+                $e->getMessage()
+            ), $e->getCode(), $e);            
+        } catch (\Throwable $e) {
             throw new RuntimeException(sprintf(
                 'Unable to instantiate the request handler: "%s"',
                 $e->getMessage()

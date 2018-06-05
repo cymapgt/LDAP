@@ -61,7 +61,7 @@ class PasswordModifyResponseSpec extends ObjectBehavior
                 Asn1::context(0, Asn1::octetString('bleep-blorp'))
             ))))
         ))]);
-
+        
         $this->getGeneratedPassword()->shouldBeEqualTo('bleep-blorp');
         $this->getResultCode()->shouldBeEqualTo(0);
         $this->getDn()->shouldBeLike(new Dn('dc=foo,dc=bar'));

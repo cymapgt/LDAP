@@ -33,7 +33,7 @@ interface ReferralChaserInterface
      * @throws SkipReferralException
      * @return BindRequest|null
      */
-    public function chase(LdapMessageRequest $request, LdapUrl $referral, ?BindRequest $bind) : ?BindRequest;
+    public function chase(LdapMessageRequest $request, LdapUrl $referral, BindRequest $bind = null);
 
     /**
      * Construct the LdapClient with the options you want, and perform other tasks (such as StartTLS)

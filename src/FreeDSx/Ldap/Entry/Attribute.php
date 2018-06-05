@@ -19,7 +19,7 @@ class Attribute implements \IteratorAggregate, \Countable
 {
     use EscapeTrait;
 
-    protected const ESCAPE_MAP = [
+    const ESCAPE_MAP = [
         '\\' => '\5c',
         '*' => '\2a',
         '(' => '\28',

@@ -31,7 +31,7 @@ class AnonToken implements TokenInterface
      * @param null|string $username
      * @param int $version
      */
-    public function __construct(?string $username = null, int $version = 3)
+    public function __construct(string $username = null, int $version = 3)
     {
         $this->username = $username;
         $this->version = $version;
@@ -40,7 +40,7 @@ class AnonToken implements TokenInterface
     /**
      * {@inheritdoc}
      */
-    public function getUsername() : ?string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -48,7 +48,7 @@ class AnonToken implements TokenInterface
     /**
      * {@inheritdoc}
      */
-    public function getPassword() : ?string
+    public function getPassword()
     {
         return null;
     }

@@ -41,7 +41,7 @@ class LdapUrlExtension
      * @param null|string $value
      * @param bool $isCritical
      */
-    public function __construct(string $name, ?string $value = null, bool $isCritical = false)
+    public function __construct(string $name, string $value = null, bool $isCritical = false)
     {
         $this->name = $name;
         $this->value = $value;
@@ -70,7 +70,7 @@ class LdapUrlExtension
     /**
      * @return null|string
      */
-    public function getValue() : ?string
+    public function getValue()
     {
         return $this->value;
     }
@@ -79,7 +79,7 @@ class LdapUrlExtension
      * @param null|string $value
      * @return $this
      */
-    public function setValue(?string $value)
+    public function setValue(string $value)
     {
         $this->value = $value;
 

@@ -25,11 +25,11 @@ class LdapUrl
 {
     use LdapUrlTrait;
 
-    public const SCOPE_BASE = 'base';
+    const SCOPE_BASE = 'base';
 
-    public const SCOPE_ONE = 'one';
+    const SCOPE_ONE = 'one';
 
-    public const SCOPE_SUB = 'sub';
+    const SCOPE_SUB = 'sub';
 
     /**
      * @var null|int
@@ -74,7 +74,7 @@ class LdapUrl
     /**
      * @param null|string $host
      */
-    public function __construct(?string $host = null)
+    public function __construct(string $host = null)
     {
         $this->host = $host;
     }
@@ -83,7 +83,7 @@ class LdapUrl
      * @param null|string|Dn $dn
      * @return $this
      */
-    public function setDn($dn)
+    public function setDn($dn = null)
     {
         $this->dn = $dn === null ? $dn : new Dn($dn);
 
@@ -93,7 +93,7 @@ class LdapUrl
     /**
      * @return Dn
      */
-    public function getDn() : ?Dn
+    public function getDn()
     {
         return $this->dn;
     }
@@ -101,7 +101,7 @@ class LdapUrl
     /**
      * @return mixed
      */
-    public function getHost() : ?string
+    public function getHost()
     {
         return $this->host;
     }
@@ -110,7 +110,7 @@ class LdapUrl
      * @param null|string $host
      * @return $this
      */
-    public function setHost(?string $host)
+    public function setHost(string $host = null)
     {
         $this->host = $host;
 
@@ -121,7 +121,7 @@ class LdapUrl
      * @param int|null $port
      * @return $this
      */
-    public function setPort(?int $port)
+    public function setPort(int $port = null)
     {
         $this->port = $port;
 
@@ -131,7 +131,7 @@ class LdapUrl
     /**
      * @return int|null
      */
-    public function getPort() : ?int
+    public function getPort()
     {
         return $this->port;
     }
@@ -139,7 +139,7 @@ class LdapUrl
     /**
      * @return null|string
      */
-    public function getScope() : ?string
+    public function getScope()
     {
         return $this->scope;
     }
@@ -148,7 +148,7 @@ class LdapUrl
      * @param null|string $scope
      * @return $this
      */
-    public function setScope(?string $scope)
+    public function setScope(string $scope = null)
     {
         $scope = $scope === null ? $scope : strtolower($scope);
         if ($scope !== null && !in_array($scope, [self::SCOPE_BASE, self::SCOPE_ONE, self::SCOPE_SUB])) {
@@ -168,7 +168,7 @@ class LdapUrl
     /**
      * @return null|string
      */
-    public function getFilter() : ?string
+    public function getFilter()
     {
         return $this->filter;
     }
@@ -177,7 +177,7 @@ class LdapUrl
      * @param null|string $filter
      * @return $this
      */
-    public function setFilter(?string $filter)
+    public function setFilter(string $filter = null)
     {
         $this->filter = $filter;
 

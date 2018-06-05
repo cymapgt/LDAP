@@ -68,7 +68,7 @@ class SimpleBindRequest extends BindRequest
     /**
      * {@inheritdoc}
      */
-    protected function validate(): void
+    protected function validate()
     {
         if ($this->isEmpty($this->username) || $this->isEmpty($this->password)) {
             throw new BindException('A simple bind must have a non-empty username and password.');

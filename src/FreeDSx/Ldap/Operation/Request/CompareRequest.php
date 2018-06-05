@@ -29,7 +29,7 @@ use FreeDSx\Ldap\Search\Filter\EqualityFilter;
  */
 class CompareRequest implements RequestInterface, DnRequestInterface
 {
-    protected const APP_TAG = 14;
+    const APP_TAG = 14;
 
     /**
      * @var Dn

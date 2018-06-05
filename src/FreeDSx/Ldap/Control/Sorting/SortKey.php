@@ -37,7 +37,7 @@ class SortKey
      * @param bool $useReverseOrder
      * @param null|string $orderingRule
      */
-    public function __construct(string $attribute, bool $useReverseOrder = false, ?string $orderingRule = null)
+    public function __construct(string $attribute, bool $useReverseOrder = false, string $orderingRule = null)
     {
         $this->attribute = $attribute;
         $this->orderingRule = $orderingRule;
@@ -66,7 +66,7 @@ class SortKey
     /**
      * @return string
      */
-    public function getOrderingRule() : ?string
+    public function getOrderingRule()
     {
         return $this->orderingRule;
     }
@@ -75,7 +75,7 @@ class SortKey
      * @param string $orderingRule
      * @return $this
      */
-    public function setOrderingRule(?string $orderingRule)
+    public function setOrderingRule(string $orderingRule = null)
     {
         $this->orderingRule = $orderingRule;
 
@@ -108,7 +108,7 @@ class SortKey
      * @param null|string $matchRule
      * @return SortKey
      */
-    public static function ascending(string $attribute, ?string $matchRule = null)
+    public static function ascending(string $attribute, string $matchRule = null)
     {
         return new self($attribute, false, $matchRule);
     }
@@ -120,7 +120,7 @@ class SortKey
      * @param null|string $matchRule
      * @return SortKey
      */
-    public static function descending(string $attribute, ?string $matchRule = null)
+    public static function descending(string $attribute, string $matchRule = null)
     {
         return new self($attribute, true, $matchRule);
     }

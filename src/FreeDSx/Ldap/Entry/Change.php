@@ -20,17 +20,17 @@ class Change
     /**
      * Add a value to an attribute.
      */
-    public const TYPE_ADD = 0;
+    const TYPE_ADD = 0;
 
     /**
      * Delete a value, or values, from an attribute.
      */
-    public const TYPE_DELETE = 1;
+    const TYPE_DELETE = 1;
 
     /**
      * Replaces the current value of an attribute with a different one.
      */
-    public const TYPE_REPLACE = 2;
+    const TYPE_REPLACE = 2;
 
     /**
      * @var int

@@ -37,7 +37,7 @@ class BindResponse extends LdapResult
      * @param LdapResult $result
      * @param null|string $saslCreds
      */
-    public function __construct(LdapResult $result, ?string $saslCreds = null)
+    public function __construct(LdapResult $result, string $saslCreds = null)
     {
         $this->saslCreds = $saslCreds;
         parent::__construct($result->getResultCode(), $result->getDn(), $result->getDiagnosticMessage(), ...$result->getReferrals());
@@ -46,7 +46,7 @@ class BindResponse extends LdapResult
     /**
      * @return null|string
      */
-    public function getSaslCredentials() : ?string
+    public function getSaslCredentials()
     {
         return $this->saslCreds;
     }
@@ -71,7 +71,8 @@ class BindResponse extends LdapResult
      */
     public static function fromAsn1(AbstractType $type)
     {
-        [$resultCode, $dn, $diag, $ref] = self::parseResultData($type);
+        list($resultCode, $dn, $diag, $ref) = self::parseResultData($type);
+        //[$resultCode, $dn, $diag, $ref] = self::parseResultData($type); Will not work with PHP <= 7.0
         $saslCreds = null;
 
         /** @var SequenceType $type */

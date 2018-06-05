@@ -38,7 +38,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class ModifyRequest implements RequestInterface, DnRequestInterface
 {
-    protected const APP_TAG = 6;
+    const APP_TAG = 6;
 
     /**
      * @var Change[]

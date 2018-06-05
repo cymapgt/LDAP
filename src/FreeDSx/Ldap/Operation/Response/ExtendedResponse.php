@@ -35,7 +35,7 @@ class ExtendedResponse extends LdapResult
     /**
      * RFC 4511, 4.4.1. Used by the server to notify the client it is terminating the LDAP session.
      */
-    public const OID_NOTICE_OF_DISCONNECTION = '1.3.6.1.4.1.1466.20036';
+    const OID_NOTICE_OF_DISCONNECTION = '1.3.6.1.4.1.1466.20036';
 
     /**
      * @var null|string
@@ -52,7 +52,7 @@ class ExtendedResponse extends LdapResult
      * @param null|string $responseName
      * @param null|string $responseValue
      */
-    public function __construct(LdapResult $result, ?string $responseName = null, ?string $responseValue = null)
+    public function __construct(LdapResult $result, string $responseName = null, string $responseValue = null)
     {
         $this->responseValue = $responseValue;
         $this->responseName = $responseName;
@@ -64,7 +64,7 @@ class ExtendedResponse extends LdapResult
      *
      * @return null|string
      */
-    public function getName() : ?string
+    public function getName()
     {
         return $this->responseName;
     }
@@ -74,7 +74,7 @@ class ExtendedResponse extends LdapResult
      *
      * @return null|string
      */
-    public function getValue() : ?string
+    public function getValue()
     {
         return $this->responseValue;
     }
@@ -141,7 +141,8 @@ class ExtendedResponse extends LdapResult
      */
     protected static function createLdapResult(AbstractType $type)
     {
-        [$resultCode, $dn, $diagnosticMessage, $referrals] = self::parseResultData($type);
+        list($resultCode, $dn, $diagnosticMessage, $referrals) = self::parseResultData($type);
+        //[$resultCode, $dn, $diagnosticMessage, $referrals] = self::parseResultData($type); Will not work with PHP <= 7.0
 
         return new LdapResult($resultCode, $dn, $diagnosticMessage, ...$referrals);
     }
@@ -156,7 +157,11 @@ class ExtendedResponse extends LdapResult
         if (!$type instanceof SequenceType) {
             throw new ProtocolException('The received control is malformed. Unable to get the encoded value.');
         }
-        [1 => $value] = self::parseExtendedResponse($type);
+        
+        $extendedResponse = self::parseExtendedResponse($type);
+
+        $value = $extendedResponse[1];
+        //[1 => $value] = self::parseExtendedResponse($type); Will not work with PHP <= 7.0
 
         return $value === null ? null : (new LdapEncoder())->decode($value);
     }

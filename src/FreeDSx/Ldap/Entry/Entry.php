@@ -149,7 +149,7 @@ class Entry implements \IteratorAggregate, \Countable
      * @param string|Attribute $attribute
      * @return null|Attribute
      */
-    public function get($attribute) : ?Attribute
+    public function get($attribute)
     {
         $attribute = $attribute instanceof Attribute ? $attribute : new Attribute($attribute);
 

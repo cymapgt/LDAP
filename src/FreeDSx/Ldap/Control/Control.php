@@ -31,21 +31,21 @@ use FreeDSx\Ldap\Protocol\ProtocolElementInterface;
  */
 class Control implements ProtocolElementInterface
 {
-    public const OID_PAGING = '1.2.840.113556.1.4.319';
+    const OID_PAGING = '1.2.840.113556.1.4.319';
 
-    public const OID_PWD_POLICY = '1.3.6.1.4.1.42.2.27.8.5.1';
+    const OID_PWD_POLICY = '1.3.6.1.4.1.42.2.27.8.5.1';
 
-    public const OID_SD_FLAGS = '1.2.840.113556.1.4.801';
+    const OID_SD_FLAGS = '1.2.840.113556.1.4.801';
 
-    public const OID_SUBTREE_DELETE = '1.2.840.113556.1.4.805';
+    const OID_SUBTREE_DELETE = '1.2.840.113556.1.4.805';
 
-    public const OID_SORTING = '1.2.840.113556.1.4.473';
+    const OID_SORTING = '1.2.840.113556.1.4.473';
 
-    public const OID_SORTING_RESPONSE = '1.2.840.113556.1.4.474';
+    const OID_SORTING_RESPONSE = '1.2.840.113556.1.4.474';
 
-    public const OID_VLV = '2.16.840.1.113730.3.4.9';
+    const OID_VLV = '2.16.840.1.113730.3.4.9';
 
-    public const OID_VLV_RESPONSE = '2.16.840.1.113730.3.4.10';
+    const OID_VLV_RESPONSE = '2.16.840.1.113730.3.4.10';
 
     /**
      * @var string
@@ -193,7 +193,12 @@ class Control implements ProtocolElementInterface
                 count($type->getChildren())
             ));
         }
-        [0 => $control->controlType, 1 => $control->criticality, 2 => $control->controlValue] = self::parseAsn1ControlValues($type);
+        
+        $asn1ControlValues = self::parseAsn1ControlValues($type);
+        $control->controlType = $asn1ControlValues[0];
+        $control->criticality = $asn1ControlValues[1];
+        $control->controlValue = $asn1ControlValues[2];
+        //[0 => $control->controlType, 1 => $control->criticality, 2 => $control->controlValue] = self::parseAsn1ControlValues($type); Will not work with PHP <= 7.0
 
         return $control;
     }
@@ -208,8 +213,10 @@ class Control implements ProtocolElementInterface
         if (!$type instanceof SequenceType) {
             throw new ProtocolException('The received control is malformed. Unable to get the encoded value.');
         }
-
-        [2 => $value] = self::parseAsn1ControlValues($type);
+        
+        $asn1ControlValues = self::parseAsn1ControlValues($type);
+        $value = $asn1ControlValues[2];
+        //[2 => $value] = self::parseAsn1ControlValues($type); Will not work with PHP <= 7.0
         if ($value === null) {
             throw new ProtocolException('The received control is malformed. Unable to get the encoded value.');
         }

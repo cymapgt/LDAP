@@ -33,11 +33,11 @@ use FreeDSx\Ldap\Search\Vlv;
  */
 class LdapClient
 {
-    public const REFERRAL_IGNORE = 'ignore';
+    const REFERRAL_IGNORE = 'ignore';
 
-    public const REFERRAL_FOLLOW = 'follow';
+    const REFERRAL_FOLLOW = 'follow';
 
-    public const REFERRAL_THROW = 'throw';
+    const REFERRAL_THROW = 'throw';
 
     /**
      * @var array
@@ -129,7 +129,7 @@ class LdapClient
      * @param Control[] ...$controls
      * @return Entry|null
      */
-    public function read(string $entry, $attributes = [], Control ...$controls) : ?Entry
+    public function read(string $entry, $attributes = [], Control ...$controls)
     {
         try {
             return $this->search(Operations::read($entry, ...$attributes), ...$controls)->first();
@@ -190,7 +190,7 @@ class LdapClient
      * @param int $size
      * @return Paging
      */
-    public function paging(SearchRequest $search, ?int $size = null) : Paging
+    public function paging(SearchRequest $search, int $size = null) : Paging
     {
         return new Paging($this, $search, $size ?? $this->options['page_size']);
     }
@@ -215,7 +215,7 @@ class LdapClient
      * @param Control[] ...$controls
      * @return LdapMessageResponse|null
      */
-    public function send(RequestInterface $request, Control ...$controls) : ?LdapMessageResponse
+    public function send(RequestInterface $request, Control ...$controls)
     {
         return $this->handler->send($request, ...$controls);
     }
@@ -249,7 +249,7 @@ class LdapClient
      *
      * @return string
      */
-    public function whoami() : ?string
+    public function whoami()
     {
         /** @var \FreeDSx\Ldap\Operation\Response\ExtendedResponse $response */
         $response = $this->send(Operations::whoami())->getResponse();

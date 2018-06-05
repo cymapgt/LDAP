@@ -58,7 +58,7 @@ class VlvControl extends Control
      * @param GreaterThanOrEqualFilter|null $filter
      * @param null|string $contextId
      */
-    public function __construct(int $before, int $after, ?int $offset = null, ?int $count = null, GreaterThanOrEqualFilter $filter = null, ?string $contextId = null)
+    public function __construct(int $before, int $after, int $offset = null, int $count = null, GreaterThanOrEqualFilter $filter = null, string $contextId = null)
     {
         $this->before = $before;
         $this->after = $after;
@@ -111,7 +111,7 @@ class VlvControl extends Control
      * @param int $count
      * @return $this
      */
-    public function setCount(?int $count)
+    public function setCount(int $count = null)
     {
         $this->count = $count;
 
@@ -133,7 +133,7 @@ class VlvControl extends Control
      * @param int $offset
      * @return $this
      */
-    public function setOffset(?int $offset)
+    public function setOffset(int $offset = null)
     {
         $this->offset = $offset;
 
@@ -143,7 +143,7 @@ class VlvControl extends Control
     /**
      * @return null|GreaterThanOrEqualFilter
      */
-    public function getFilter() : ?GreaterThanOrEqualFilter
+    public function getFilter()
     {
         return $this->filter;
     }

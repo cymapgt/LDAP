@@ -33,7 +33,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class MatchingRuleFilter implements FilterInterface
 {
-    protected const CHOICE_TAG = 9;
+    const CHOICE_TAG = 9;
 
     /**
      * @var null|string
@@ -61,7 +61,7 @@ class MatchingRuleFilter implements FilterInterface
      * @param string $value
      * @param bool $useDnAttributes
      */
-    public function __construct(?string $matchingRule, ?string $attribute, string $value, bool $useDnAttributes = false)
+    public function __construct(string $matchingRule = null, string $attribute = null, string $value = null, bool $useDnAttributes = false)
     {
         $this->matchingRule = $matchingRule;
         $this->attribute = $attribute;
@@ -72,7 +72,7 @@ class MatchingRuleFilter implements FilterInterface
     /**
      * @return null|string
      */
-    public function getAttribute() : ?string
+    public function getAttribute()
     {
         return $this->attribute;
     }
@@ -81,7 +81,7 @@ class MatchingRuleFilter implements FilterInterface
      * @param null|string $attribute
      * @return $this
      */
-    public function setAttribute(?string $attribute)
+    public function setAttribute(string $attribute = null)
     {
         $this->attribute = $attribute;
 
@@ -91,7 +91,7 @@ class MatchingRuleFilter implements FilterInterface
     /**
      * @return null|string
      */
-    public function getMatchingRule() : ?string
+    public function getMatchingRule()
     {
         return $this->matchingRule;
     }
@@ -100,7 +100,7 @@ class MatchingRuleFilter implements FilterInterface
      * @param null|string $matchingRule
      * @return $this
      */
-    public function setMatchingRule(?string $matchingRule)
+    public function setMatchingRule(string $matchingRule = null)
     {
         $this->matchingRule = $matchingRule;
 

@@ -44,7 +44,7 @@ class ResponseFactory
      * @param string $diagnostic
      * @return ResponseInterface|null
      */
-    public static function get(RequestInterface $request, int $resultCode, string $diagnostic = '') : ?ResponseInterface
+    public static function get(RequestInterface $request, int $resultCode, string $diagnostic = '')
     {
         $response = null;
 

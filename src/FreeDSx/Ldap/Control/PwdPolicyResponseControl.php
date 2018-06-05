@@ -59,7 +59,7 @@ class PwdPolicyResponseControl extends Control
      * @param int|null $graceAuthRemaining
      * @param int|null $error
      */
-    public function __construct(?int $timeBeforeExpiration = null, ?int $graceAuthRemaining = null, ?int $error = null)
+    public function __construct(int $timeBeforeExpiration = null, int $graceAuthRemaining = null, int $error = null)
     {
         $this->timeBeforeExpiration = $timeBeforeExpiration;
         $this->graceAuthRemaining = $graceAuthRemaining;
@@ -70,7 +70,7 @@ class PwdPolicyResponseControl extends Control
     /**
      * @return int|null
      */
-    public function getTimeBeforeExpiration() : ?int
+    public function getTimeBeforeExpiration()
     {
         return $this->timeBeforeExpiration;
     }
@@ -78,7 +78,7 @@ class PwdPolicyResponseControl extends Control
     /**
      * @return int|null
      */
-    public function getGraceAttemptsRemaining() : ?int
+    public function getGraceAttemptsRemaining()
     {
         return $this->graceAuthRemaining;
     }
@@ -86,7 +86,7 @@ class PwdPolicyResponseControl extends Control
     /**
      * @return int|null
      */
-    public function getError() : ?int
+    public function getError()
     {
         return $this->error;
     }

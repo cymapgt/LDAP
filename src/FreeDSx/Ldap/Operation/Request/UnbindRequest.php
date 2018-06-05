@@ -24,7 +24,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class UnbindRequest implements RequestInterface
 {
-    protected const APP_TAG = 2;
+    const APP_TAG = 2;
 
     /**
      * {@inheritdoc}

@@ -28,27 +28,27 @@ use FreeDSx\Ldap\Protocol\ProtocolElementInterface;
  */
 class ExtendedRequest implements RequestInterface
 {
-    protected const APP_TAG = 23;
+    const APP_TAG = 23;
 
     /**
      * Represents a request to cancel an operation. RFC 3909.
      */
-    public const OID_CANCEL = '1.3.6.1.1.8';
+    const OID_CANCEL = '1.3.6.1.1.8';
 
     /**
      * Represents a request to issue a StartTLS to encrypt the connection.
      */
-    public const OID_START_TLS = '1.3.6.1.4.1.1466.20037';
+    const OID_START_TLS = '1.3.6.1.4.1.1466.20037';
 
     /**
      * Represents a "whoami" request. RFC 4532.
      */
-    public const OID_WHOAMI = '1.3.6.1.4.1.4203.1.11.3';
+    const OID_WHOAMI = '1.3.6.1.4.1.4203.1.11.3';
 
     /**
      * Represents a Password Modify Extended Operation. RFC 3062.
      */
-    public const OID_PWD_MODIFY = '1.3.6.1.4.1.4203.1.11.1';
+    const OID_PWD_MODIFY = '1.3.6.1.4.1.4203.1.11.1';
 
     /**
      * @var string
@@ -142,10 +142,12 @@ class ExtendedRequest implements RequestInterface
      * @return AbstractType
      * @throws ProtocolException
      */
-    protected static function decodeEncodedValue(AbstractType $type) : ?AbstractType
+    protected static function decodeEncodedValue(AbstractType $type)
     {
-        [1 => $value] = self::parseAsn1ExtendedRequest($type);
-
+        $asn1ExtendedRequest = self::parseAsn1ExtendedRequest($type);
+        $value = $asn1ExtendedRequest[1];
+        //[1 => $value] = self::parseAsn1ExtendedRequest($type);  //This will not work with PHP <= 7.0
+        
         return $value !== null ? (new LdapEncoder())->decode($value) : null;
     }
 

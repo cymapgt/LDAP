@@ -21,7 +21,7 @@ class Rdn
 {
     use EscapeTrait;
 
-    public const ESCAPE_MAP = [
+    const ESCAPE_MAP = [
         '\\' => '\\5c',
         '"' => '\\22',
         '+' => '\\2b',
@@ -148,7 +148,9 @@ class Rdn
         if ($value[0] === '#' || $value[0] === ' ') {
             $value = ($value[0] === '#' ? '\23' : '\20').substr($value, 1);
         }
-        if ($value[-1] === ' ') {
+        
+        $valueOffsetNegativeByOne = substr($value, strlen($value) - 1, 1);
+        if ($valueOffsetNegativeByOne === ' ') {
             $value = substr_replace($value, '\20',-1, 1);
         }
 

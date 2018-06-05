@@ -20,12 +20,12 @@ interface TokenInterface
     /**
      * @return null|string
      */
-    public function getUsername() : ?string;
+    public function getUsername();
 
     /**
      * @return null|string
      */
-    public function getPassword() : ?string;
+    public function getPassword();
 
     /**
      * @return int

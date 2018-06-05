@@ -178,7 +178,8 @@ class LdapResult implements ResponseInterface
      */
     public static function fromAsn1(AbstractType $type)
     {
-        [$resultCode, $dn, $diagnosticMessage, $referrals] = self::parseResultData($type);
+        list($resultCode, $dn, $diagnosticMessage, $referrals) = self::parseResultData($type);
+        //[$resultCode, $dn, $diagnosticMessage, $referrals] = self::parseResultData($type); Will not work with PHP <= 7.0
 
         return new static($resultCode, $dn, $diagnosticMessage, ...$referrals);
     }

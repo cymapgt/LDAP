@@ -19,7 +19,7 @@ class OrFilter implements FilterContainerInterface, \IteratorAggregate, \Countab
 {
     use FilterContainerTrait;
 
-    protected const FILTER_OPERATOR = self::OPERATOR_OR;
+    const FILTER_OPERATOR = self::OPERATOR_OR;
 
-    protected const CHOICE_TAG = 1;
+    const CHOICE_TAG = 1;
 }

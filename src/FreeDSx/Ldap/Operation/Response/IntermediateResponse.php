@@ -26,7 +26,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class IntermediateResponse implements ResponseInterface
 {
-    protected const TAG_NUMBER = 25;
+    const TAG_NUMBER = 25;
 
     /**
      * @var null|string
@@ -42,7 +42,7 @@ class IntermediateResponse implements ResponseInterface
      * @param null|string $responseName
      * @param null|string $responseValue
      */
-    public function __construct(?string $responseName, ?string $responseValue)
+    public function __construct(string $responseName, string $responseValue)
     {
         $this->responseName = $responseName;
         $this->responseValue = $responseValue;
@@ -51,7 +51,7 @@ class IntermediateResponse implements ResponseInterface
     /**
      * @return null|string
      */
-    public function getName() : ?string
+    public function getName()
     {
         return $this->responseName;
     }
@@ -59,7 +59,7 @@ class IntermediateResponse implements ResponseInterface
     /**
      * @return null|string
      */
-    public function getValue() : ?string
+    public function getValue()
     {
         return $this->responseValue;
     }

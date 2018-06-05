@@ -84,7 +84,7 @@ class OperationFactory
      * @param int $operation
      * @param $className
      */
-    public static function set(int $operation, $className) : void
+    public static function set(int $operation, $className)
     {
         if (!class_exists($className)) {
             throw new InvalidArgumentException(sprintf(

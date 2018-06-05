@@ -34,7 +34,7 @@ class PasswordModifyResponse extends ExtendedResponse
      * @param LdapResult $result
      * @param null|string $generatedPassword
      */
-    public function __construct(LdapResult $result, ?string $generatedPassword = null)
+    public function __construct(LdapResult $result, string $generatedPassword = null)
     {
         $this->generatedPassword = $generatedPassword;
         parent::__construct($result);
@@ -43,7 +43,7 @@ class PasswordModifyResponse extends ExtendedResponse
     /**
      * @return null|string
      */
-    public function getGeneratedPassword() : ?string
+    public function getGeneratedPassword()
     {
         return $this->generatedPassword;
     }

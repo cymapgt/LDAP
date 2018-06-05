@@ -185,7 +185,7 @@ class Vlv
      *
      * @return int|null
      */
-    public function listOffset() : ?int
+    public function listOffset()
     {
         return $this->control ? $this->control->getOffset() : null;
     }
@@ -195,7 +195,7 @@ class Vlv
      *
      * @return int|null
      */
-    public function listSize() : ?int
+    public function listSize()
     {
         return $this->control ? $this->control->getCount() : null;
     }
@@ -206,7 +206,7 @@ class Vlv
      *
      * @return int|null
      */
-    public function position() : ?int
+    public function position()
     {
         $pos = $this->control ? $this->control->getOffset() : null;
 

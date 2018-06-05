@@ -30,7 +30,7 @@ use FreeDSx\Ldap\Entry\Entry;
  */
 class SearchResultEntry implements ResponseInterface
 {
-    protected const TAG_NUMBER = 4;
+    const TAG_NUMBER = 4;
 
     /**
      * @var Entry

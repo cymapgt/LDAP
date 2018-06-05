@@ -19,7 +19,7 @@ class AndFilter implements FilterContainerInterface, \IteratorAggregate, \Counta
 {
     use FilterContainerTrait;
 
-    protected const FILTER_OPERATOR = self::OPERATOR_AND;
+    const FILTER_OPERATOR = self::OPERATOR_AND;
 
-    protected const CHOICE_TAG = 0;
+    const CHOICE_TAG = 0;
 }

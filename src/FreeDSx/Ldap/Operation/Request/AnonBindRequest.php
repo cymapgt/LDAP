@@ -41,7 +41,7 @@ class AnonBindRequest extends BindRequest
     /**
      * {@inheritdoc}
      */
-    protected function validate(): void
+    protected function validate()
     {
     }
 }

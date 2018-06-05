@@ -25,7 +25,7 @@ use FreeDSx\Ldap\Protocol\LdapEncoder;
  */
 class NotFilter implements FilterInterface
 {
-    protected const CHOICE_TAG = 2;
+    const CHOICE_TAG = 2;
 
     /**
      * @var FilterInterface

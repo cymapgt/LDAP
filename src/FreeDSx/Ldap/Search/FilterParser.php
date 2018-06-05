@@ -24,7 +24,7 @@ use FreeDSx\Ldap\Search\Filter\SubstringFilter;
  */
 class FilterParser
 {
-    protected const MATCHING_RULE = '/^([a-zA-Z0-9\.]+)?(\:dn)?(\:([a-zA-Z0-9\.]+))?$/';
+    const MATCHING_RULE = '/^([a-zA-Z0-9\.]+)?(\:dn)?(\:([a-zA-Z0-9\.]+))?$/';
 
     /**
      * @var string
@@ -78,9 +78,11 @@ class FilterParser
     protected function parseFilterString(int $startAt, bool $isRoot = false) : array
     {
         if ($this->isAtFilterContainer($startAt)) {
-            [$endsAt, $filter] = $this->parseFilterContainer($startAt, $isRoot);
+            list($endsAt, $filter) = $this->parseFilterContainer($startAt, $isRoot);
+            //[$endsAt, $filter] = $this->parseFilterContainer($startAt, $isRoot); Will not work with PHP <= 7.0
         } else {
-            [$endsAt, $filter] = $this->parseComparisonFilter($startAt, $isRoot);
+            list($endsAt, $filter) = $this->parseComparisonFilter($startAt, $isRoot);
+            //[$endsAt, $filter] = $this->parseComparisonFilter($startAt, $isRoot); Wiol
         }
         if ($isRoot && $endsAt !== $this->length) {
             throw new FilterParseException(sprintf(
@@ -119,7 +121,7 @@ class FilterParser
      * @return array
      * @throws FilterParseException
      */
-    protected function parseFilterContainer(int $startAt, bool $isRoot) : array
+    protected function parseFilterContainer(int $startAt, bool $isRoot = false) : array
     {
         if (!$this->containers) {
             $this->parseContainerDepths();
@@ -127,7 +129,7 @@ class FilterParser
         $this->depth += $isRoot ? 0 : 1;
         if (!isset($this->containers[$this->depth])) {
             throw new FilterParseException(sprintf(
-                'The container at position %s is unrecognized. Perhaps there\'s an unmatched "(".'.
+                'The container at position %s is unrecognized. Perhaps there\'s an unmatched "(".',
                 $startAt
             ));
         }
@@ -141,7 +143,8 @@ class FilterParser
         $startAt += 2;
         $filter = $operator === FilterInterface::OPERATOR_AND ? new AndFilter() : new OrFilter();
         while ($endAt !== ($startAt + 1)) {
-            [$startAt, $childFilter] = $this->parseFilterString($startAt);
+            list($startAt, $childFilter) = $this->parseFilterString($startAt);
+            //[$startAt, $childFilter] = $this->parseFilterString($startAt); Will not work with PHP <= 7.1
             $filter->add($childFilter);
         }
 
@@ -239,7 +242,7 @@ class FilterParser
      * @param int $endAt
      * @throws FilterParseException
      */
-    protected function validateParsedFilter(?string $filterType, ?int $startsAt, ?int $startValue, $endAt): void
+    protected function validateParsedFilter(string $filterType = null, int $startsAt = null, int $startValue = null, $endAt = null)
     {
         if ($filterType === null) {
             throw new FilterParseException(sprintf(
@@ -392,7 +395,7 @@ class FilterParser
      *
      * @throws FilterParseException
      */
-    protected function parseContainerDepths() : void
+    protected function parseContainerDepths()
     {
         $this->containers = [];
 

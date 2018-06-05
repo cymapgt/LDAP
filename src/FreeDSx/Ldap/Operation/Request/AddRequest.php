@@ -45,7 +45,7 @@ use FreeDSx\Ldap\Exception\ProtocolException;
  */
 class AddRequest implements RequestInterface
 {
-    protected const APP_TAG = 8;
+    const APP_TAG = 8;
 
     /**
      * @var Entry
